@@ -24,7 +24,7 @@ print(f"平均客单价：{avg_aov:.2f}")
 ai_path = os.path.join(RESULTS_DIR, 'ai_recall_strategies_v3.csv')
 ai_df = pd.read_csv(ai_path)
 
-# 从原始 'offer' 列中提取优惠金额（比如从“满2000减300”里提取300）
+# 从原始 'offer' 列中提取优惠金额
 def parse_discount(text):
     if pd.isna(text):
         return 200  # 兜底：确保不为 0
