@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(BASE_DIR, 'results')
 
-# 2. 读取你粘贴进来的 AI 策略文件（自动从 results 读取）
+# 2. 读取 AI 策略文件（自动从 results 读取）
 input_path = os.path.join(RESULTS_DIR, 'ai_recall_strategies_v3.csv')
 print(f"正在读取 AI 策略文件: {input_path}")
 
