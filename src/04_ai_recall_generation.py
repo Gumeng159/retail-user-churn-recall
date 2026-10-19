@@ -12,12 +12,11 @@ warnings.filterwarnings('ignore')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RESULTS_DIR = os.path.join(BASE_DIR, 'results')
 
-# 2. 配置 API (适配 openai 0.8.0 版本的写法)
-API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-你的key填这里")
-if API_KEY == "sk-你的key填这里":
+# 2. 配置 API
+API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-key")
+if API_KEY == "sk-key":
     print("⚠️ 警告: 检测到未配置 DEEPSEEK_API_KEY，请检查 PyCharm 运行配置的环境变量！")
 
-# 注意：0.8.0 版本设置 API Key 和 base_url 的写法与新版不同
 openai.api_key = API_KEY
 openai.api_base = "https://api.deepseek.com"
 
@@ -70,7 +69,7 @@ def build_prompt(row, angle, opening):
 """
 
 
-# 6. 调用 API (适配 0.8.0 版本的写法)
+# 6. 调用 API
 def generate_strategy(row, retry=3):
     angle = random.choice(ANGLES)
     opening = random.choice(OPENINGS)
@@ -83,9 +82,7 @@ def generate_strategy(row, retry=3):
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.8
             )
-            # 0.8.0 版本返回的是字典，取值方式不同
             content = response['choices'][0]['message']['content']
-            # 处理可能包裹的 markdown json 符号
             content = content.strip().strip('`').replace('json\\n', '', 1).strip()
             result = json.loads(content)
 
